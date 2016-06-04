@@ -49,6 +49,9 @@ var createDivFromJson = function () {
 	    listItem.appendChild(lineBreak);
 	    listItem.appendChild(itemPublished);
 
+	    // add style
+	    listItem.className += "col-1";
+
 	    container.appendChild(listItem);
 	    articleNumber++;
 	}
