@@ -42,11 +42,13 @@ var createDivFromJson = function () {
 	    var listItem = document.createElement("div");
 	    var itemTitle = document.createTextNode('Title : ' + news[i].title);
 	    var lineBreak = document.createElement("br");
+	    var lineBreak2 = document.createElement("br");
 	    var itemPublished = document.createTextNode('Published : ' + news[i].published);
 
 	    listItem.appendChild(htmlNumber);
 	    listItem.appendChild(itemTitle);
-	    listItem.appendChild(lineBreak);
+	    listItem.appendChild(lineBreak)
+	    listItem.appendChild(lineBreak2);
 	    listItem.appendChild(itemPublished);
 
 	    // add style
