@@ -30,7 +30,7 @@ var createDivFromJson = function () {
     var articleNumber = 1;
 
     return function (news) {
-	var container = document.getElementById('container')	
+	var container = document.getElementById('container');
 	
 	var i;
 	for (i = 0; i < news.length; i++) {
@@ -68,6 +68,7 @@ function loadMore() {
     });	
 }
 
+// http://stackoverflow.com/questions/13237555/jquery-load-content-when-scroll-to-bottom-100px-of-page-multiple-events-fired
 function bindScroll(){
     if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
 	$(window).unbind('scroll');
