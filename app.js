@@ -11,7 +11,7 @@ var requestArticles = (function () {
 	var requestURL = BASE_URL + '?offset=' + 
 	    offset + '&limit=' + limit;
 	console.log("limit: " + limit + " offset: " + offset);
-	$.getJSON(requestURL, function (json) {
+	return $.getJSON(requestURL, function (json) {
 	    var news = json.news;
 	    var container = document.getElementById('container')	
 
@@ -32,22 +32,21 @@ var requestArticles = (function () {
 		    container.appendChild(listItem);
 		}	
 	    }
+	    articleCount += limit;
+	    console.log(articleCount);
 	}) // end JSON request
-	articleCount += limit;
-	console.log(articleCount);
+
     } // end returned function
 })();
 
-// requestArticles(limit, offset)
-requestArticles(1);
-requestArticles(25, 0);
+requestArticles(25);
 
 // http://stackoverflow.com/questions/13237555/jquery-load-content-when-scroll-to-bottom-100px-of-page-multiple-events-fired
 function loadMore() {
     console.log("More loaded");
-    $.when( requestArticles(5) ).done(function( x ) {
-    $(window).bind('scroll', bindScroll);
-});	
+    $.when( requestArticles(5) ).done(function() {
+	$(window).bind('scroll', bindScroll);
+    });	
     
 }
 
