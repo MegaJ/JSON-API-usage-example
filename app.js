@@ -65,12 +65,20 @@ function loadMore() {
     console.log("More loaded");
     $.when( requestArticles(5) ).done(function() {
 	$(window).bind('scroll', bindScroll);
+
+	// it's possible to get to the bottom of the screen, then no data loads
+	// so manually call bindScroll()
+	var scrolledToBottom = $(window).scrollTop() + $(window).height() === $(document).height();
+	if (scrolledToBottom) {
+	    console.log("Scrolled to the bottom");
+	    bindScroll();
+	}
     });	
 }
 
 // http://stackoverflow.com/questions/13237555/jquery-load-content-when-scroll-to-bottom-100px-of-page-multiple-events-fired
 function bindScroll(){
-    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+    if($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
 	$(window).unbind('scroll');
 	loadMore();
     }
