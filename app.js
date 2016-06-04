@@ -5,7 +5,7 @@ var requestArticles = (function () {
     
     var articleCount = 0;
     
-    return function(limit, offset) {
+    return function(limit, offset = articleCount) {
 	var offset = typeof offset === 'number' ? offset : articleCount;
 
 	var requestURL = BASE_URL + '?offset=' + 
@@ -43,11 +43,12 @@ requestArticles(1);
 requestArticles(25, 0);
 
 // http://stackoverflow.com/questions/13237555/jquery-load-content-when-scroll-to-bottom-100px-of-page-multiple-events-fired
-function loadMore()
-{
+function loadMore() {
     console.log("More loaded");
-	requestArticles(5);
+    $.when( requestArticles(5) ).done(function( x ) {
     $(window).bind('scroll', bindScroll);
+});	
+    
 }
 
 function bindScroll(){
