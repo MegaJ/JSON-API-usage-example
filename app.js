@@ -17,30 +17,35 @@ var requestArticles = (function () {
 	    if (news.length === 0) {
 		return;
 	    }
-	    var container = document.getElementById('container')	
 
-	    var i;
-	    for (i = 0; i < news.length; i++) {
-		if (typeof json[i] !== 'function') {
-		    // for each article acquired, add a new div to body
-		    // fill div with information
-		    var listItem = document.createElement("li");
-		    var itemTitle = document.createTextNode('Title : ' + news[i].title);
-		    var itemPublished = document.createTextNode('Published : ' + news[i].published);
-
-		    
-		    // put text inside list item
-		    listItem.appendChild(itemTitle);
-		    listItem.appendChild(itemPublished);
-		    // put list item in unordered list
-		    container.appendChild(listItem);
-		}	
-	    }
+	    createDivFromJson(news);
+	    
 	    articleCount += limit;
 	    console.log(articleCount);
 	}) // end JSON request
     } // end inner function
 })();
+
+var createDivFromJson = function (news) {
+    var container = document.getElementById('container')	
+
+    var i;
+    for (i = 0; i < news.length; i++) {
+
+	// for each article acquired, add a new div to body
+	// fill div with information
+	var listItem = document.createElement("div");
+	var itemTitle = document.createTextNode('Title : ' + news[i].title);
+	var lineBreak = document.createElement("br");
+	var itemPublished = document.createTextNode('Published : ' + news[i].published);
+
+	listItem.appendChild(itemTitle);
+	listItem.appendChild(lineBreak);
+	listItem.appendChild(itemPublished);
+
+	container.appendChild(listItem);
+    }
+}
 
 // http://stackoverflow.com/questions/13237555/jquery-load-content-when-scroll-to-bottom-100px-of-page-multiple-events-fired
 function loadMore() {
