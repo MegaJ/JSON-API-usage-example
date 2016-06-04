@@ -25,7 +25,7 @@ You can follow what I did throughout the rest of the project by inspecting my co
 
 
 ### app.js
-1. ```requestArticles()```
+1. requestArticles()
 
    * ```requestArticles``` is bound to an anonymous function, which returns another function. I did this in order to make ```articleCount``` a private variable via use of closures. I want this as a private variable because nothing should be able to change how many articles have been loaded. Only this function should know about it.
     
