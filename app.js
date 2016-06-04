@@ -5,8 +5,8 @@ var requestArticles = (function () {
     
     var articleCount = 0;
     
-    return function(limit, offset = articleCount) {
-	
+    return function(limit, offset) {
+	var offset = typeof offset === 'number' ? offset : articleCount;
 	var requestURL = BASE_URL + '?offset=' + 
 	    offset + '&limit=' + limit;
 	console.log("limit: " + limit + " offset: " + offset);
