@@ -95,3 +95,4 @@ var loadUntilScrollBarAppears = function () {
 
 $(window).scroll(bindScroll);
 window.onload = loadUntilScrollBarAppears;
+window.onresize = loadUntilScrollBarAppears;
