@@ -26,26 +26,34 @@ var requestArticles = (function () {
     } // end inner function
 })();
 
-var createDivFromJson = function (news) {
-    var container = document.getElementById('container')	
+var createDivFromJson = function () {
+    var articleNumber = 1;
 
-    var i;
-    for (i = 0; i < news.length; i++) {
+    return function (news) {
+	var container = document.getElementById('container')	
+	
+	var i;
+	for (i = 0; i < news.length; i++) {
 
-	// for each article acquired, add a new div to body
-	// fill div with information
-	var listItem = document.createElement("div");
-	var itemTitle = document.createTextNode('Title : ' + news[i].title);
-	var lineBreak = document.createElement("br");
-	var itemPublished = document.createTextNode('Published : ' + news[i].published);
+	    // for each article acquired, add a new div to body
+	    // fill div with information
+	    var htmlNumber = document.createElement("div");
+	    htmlNumber.innerHTML = articleNumber;
+	    var listItem = document.createElement("div");
+	    var itemTitle = document.createTextNode('Title : ' + news[i].title);
+	    var lineBreak = document.createElement("br");
+	    var itemPublished = document.createTextNode('Published : ' + news[i].published);
 
-	listItem.appendChild(itemTitle);
-	listItem.appendChild(lineBreak);
-	listItem.appendChild(itemPublished);
+	    listItem.appendChild(htmlNumber);
+	    listItem.appendChild(itemTitle);
+	    listItem.appendChild(lineBreak);
+	    listItem.appendChild(itemPublished);
 
-	container.appendChild(listItem);
+	    container.appendChild(listItem);
+	    articleNumber++;
+	}
     }
-}
+}();
 
 // http://stackoverflow.com/questions/13237555/jquery-load-content-when-scroll-to-bottom-100px-of-page-multiple-events-fired
 function loadMore() {
