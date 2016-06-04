@@ -76,5 +76,22 @@ function bindScroll(){
     }
 }
 
+// calls itself once data is loaded
+// if html is filled with enough <div>s from JSON, this function stops
+var loadUntilScrollBarAppears = function () {
+    console.log("Loading until scroll bar appears");
+    
+    var windowHeight = window.innerHeight;
+    var htmlHeight = document.getElementsByTagName('html')[0].offsetHeight;
+
+    if (htmlHeight > windowHeight) {
+	return;
+    }
+    
+    $.when( requestArticles(5) ).done(function() {
+	loadUntilScrollBarAppears();
+    });
+}
+
 $(window).scroll(bindScroll);
-window.onload = requestArticles(25);
+window.onload = loadUntilScrollBarAppears;
