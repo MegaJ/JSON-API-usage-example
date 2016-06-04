@@ -76,4 +76,4 @@ function bindScroll(){
 }
 
 $(window).scroll(bindScroll);
-requestArticles(25);
+window.onload = requestArticles(25);
