@@ -24,14 +24,14 @@ I chose **javascript** because it's the most natural language to use when parsin
 You can follow what I did throughout the rest of the project by inspecting my commit history.
 
 
-### ```app.js```
+### app.js
 1. ```requestArticles()```
 
    * ```requestArticles``` is bound to an anonymous function, which returns another function. I did this in order to make ```articleCount``` a private variable via use of closures. I want this as a private variable because nothing should be able to change how many articles have been loaded. Only this function should know about it.
     
    * Inside, I also return ```$.getJSON()```. I do this for the call to ```$.when()``` in ```loadMore()```. Only when ```$.getJSON()``` returns, should I rebind the functionality of getting even more JSON when scrolling to the bottom. Otherwise, we may have repeated articles loaded, or articles get loaded out of order.
     
-2. ```createDivFromJson()```
+2. createDivFromJson()
 
    * This simply creates ```<div>``` elements once I have new JSON. There is likely a prettier way than the verbosity inside the ```for``` loop. I decided not to use jQuery calls here because vanilla js is much faster.
      
