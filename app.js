@@ -40,13 +40,13 @@ var requestArticles = (function () {
 
 // requestArticles(limit, offset)
 requestArticles(1);
-requestArticles(1, 0);
+requestArticles(25, 0);
 
 // http://stackoverflow.com/questions/13237555/jquery-load-content-when-scroll-to-bottom-100px-of-page-multiple-events-fired
 function loadMore()
 {
     console.log("More loaded");
-    $("body").append("<div>");
+	requestArticles(5);
     $(window).bind('scroll', bindScroll);
 }
 
